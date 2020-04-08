@@ -1,6 +1,8 @@
 
 ## TimeSheetDone
 
+Simple timesheet application with ReactJS and Jest testing library. 
+
 ![Screenshot of application](TimesheetDone.png)
 
 
