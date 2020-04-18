@@ -39,6 +39,10 @@
 .App-link {
   color: #61dafb;
 }
+.centerVideo {
+  text-align: center;
+}
+
 
 @keyframes App-logo-spin {
   from {
