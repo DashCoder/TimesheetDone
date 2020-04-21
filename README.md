@@ -1,8 +1,8 @@
 
 ## TimeSheetDone
 
-Simple timesheet application built with ReactJS, Mobx state management and tensorflow. 
-The application identify users with camera (after registration) and allow users to create timesheet entries. 
+Simple timesheet application built with React, MobX state management and Tensorflow. 
+The application identify users with camera (after registration) and allow users to create new timesheet entries. 
 
 
 
