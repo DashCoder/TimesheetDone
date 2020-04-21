@@ -1,7 +1,10 @@
 
 ## TimeSheetDone
 
-Simple timesheet application with ReactJS and Jest testing library. 
+Simple timesheet application built with ReactJS, Mobx state management and tensorflow. 
+The application identify users with camera (after registration) and allow users to create timesheet entries. 
+
+
 
 ![Screenshot of application](TimesheetDone.png)
 
