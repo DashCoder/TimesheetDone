@@ -3,14 +3,16 @@ import './App.css';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PropTypes from 'prop-types';
+import { observer } from "mobx-react";
 
-const ActivityForm = ({ change }) => {
+/* Listen to changes in parent props */
+const ActivityForm = observer(({ change, appState }) => {
 	const date = new Date().toLocaleString(); 
-	
+  	
 	const [state, setState] = useState({
 		activityLabel: 'Software Dev & Consultancy',
 		activityDuration: '60',
-		date: date 
+		date: date
 	});
 
 	const handleChange = e => {
@@ -18,6 +20,7 @@ const ActivityForm = ({ change }) => {
 			e.target.value = 999;
 		}
 		const date = new Date().toLocaleString(); 
+	
 		setState({
 			...state,
 			[e.target.name]: e.target.value,
@@ -27,7 +30,7 @@ const ActivityForm = ({ change }) => {
 
 	const handleChangeText = e => {
 		const date = new Date().toLocaleString(); 
-
+	
 	 	setState({
 			...state,
 			[e.target.name]: e.target.value,
@@ -36,20 +39,18 @@ const ActivityForm = ({ change }) => {
 	};
 
 	const handleSubmit = () => {
-	    	const date = new Date().toLocaleString(); 
-	
-	 	// Update date upon submission for case when no changes are made
+	    const date = new Date().toLocaleString(); 
+	 	/* Update date upon submission also for case when no other changes are made */
 	 	setState({
 			...state,
 			date
 		});
 
-	    change(state);
+	    change(state); 
 	};
 
 	return (
 		<>
-			
 			<div className="row">
 				<div className="col m3 s6">
 					<label htmlFor="activityLabel">Activity Name:</label>
@@ -63,7 +64,6 @@ const ActivityForm = ({ change }) => {
 					    size="40"
 					/>
 				</div>
-
 				<div className="col m3 s6">
 					<label htmlFor="activityDuration">Duration (in mins) : </label>
 					<br/>
@@ -82,7 +82,6 @@ const ActivityForm = ({ change }) => {
 
 			<hr/>
 
-
 			<div className="col m6 s12">
 				<button
 					id="activity-btn"
@@ -90,9 +89,8 @@ const ActivityForm = ({ change }) => {
 					type="button"
 					onClick={handleSubmit}
 				>
-					Generate Timesheet
+					Generate Timesheet for {appState.userName} 
 				</button>&nbsp;
-
 				<button
 					id="activity-btn"
 					className="btn btn-primary pull-right"
@@ -102,14 +100,11 @@ const ActivityForm = ({ change }) => {
 					Add activity
 				</button>
 			</div>
-			
-
-
-
 		</>
 	);
-};
+}); /* Observer rerender then appState changes */
 ActivityForm.propTypes = {
-	change: PropTypes.func.isRequired
+	change: PropTypes.func.isRequired,
+	appState: PropTypes.object
 };
 export default ActivityForm;

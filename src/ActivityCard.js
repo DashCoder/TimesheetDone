@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const ActivityCard = ({ activityLabel, activityDuration, id, date, deleteCard }) => {
+const ActivityCard = ({ activityLabel, activityDuration, id, date, contractorName, deleteCard }) => {
   const handleDelete = e => {
     deleteCard(id);
   };
 
+if (activityDuration) {
   return (
       <div className="col m6 s12">
       <div>&nbsp;</div>
@@ -21,7 +22,9 @@ const ActivityCard = ({ activityLabel, activityDuration, id, date, deleteCard })
             <span className="badge badge-pill badge-light">Duration: {activityDuration} mins</span>
             <br/>
             <span className="badge badge-pill badge-light">Date: {date}</span>
-          </div>
+            <br/>
+            <span className="badge badge-pill badge-light">Added By: {contractorName}</span>
+           </div>
 
           <button className="ml-2 mb-1 close" onClick={handleDelete}>
             X
@@ -29,10 +32,7 @@ const ActivityCard = ({ activityLabel, activityDuration, id, date, deleteCard })
         </div>
       </div>
     </div>
-
-
-
-  );
+  );} else {return (<button className="ml-2 mb-1 close" onClick={handleDelete}>{contractorName}</button>)}
 };
 
 ActivityCard.propTypes = {
@@ -40,6 +40,7 @@ ActivityCard.propTypes = {
   activityDuration: PropTypes.string,
   id: PropTypes.string,
   date: PropTypes.string,
+  contractorName: PropTypes.string,
   deleteCard: PropTypes.func
 };
 
